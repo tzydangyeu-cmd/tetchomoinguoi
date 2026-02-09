@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tết Nguyên Đán 2026 🧧</title>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        :root {
+            /* 
+                => Dòng 1892 phần lời chúc
+                => Dòng <2069 phần ảnh & ghi chú
+            */
+
+            /* cành mai phải */
+            --mai-size: 55vw;
+            --mai-max: 5000px;
+            --mai-offset-x: 5px;
+            --mai-offset-y: -20px;
+
+            /* cành mai trái */
+            --mai-left-size: 42vw;
+            --mai-left-max: 5000px;
+            --mai-left-offset-x: -5px;
+            --mai-left-offset-y: -15px;
+
+            /* tết */
+            --tet-size: 110vw;
+            --tet-max: 5000px;
+            --tet-offset-x: 0px;
+            --tet-offset-y: 0px;
+
+            /* lân */
+            --lan-size: 45vw;
+            --lan-max: 5000px;
+            --lan-offset-x: 0px;
+            --lan-offset-y: 0px;
+
+            /* 🧧 tỉ lệ thiệp */
+            --card-width: 50vw;
+            --card-max-width: 5000px;
+            --card-ratio: 3 / 4;
+
+            /* ✍️ giới hạn lời chúc (% theo thiệp) */
+            --text-top: 38%;
+            --text-bottom: 35%;
+            --text-left: 24%;
+            --text-right: 28%;
+
+            /* Vật rơi */
+            --lixi-size: clamp(1px, 3vw, 1000px);
+            --photo-size: clamp(0px, 5vw, 1000px);
+            --icon-size: clamp(1px, 2vw, 1000px);
+
+            /* ⏱️ tốc độ rơi (càng lớn càng chậm) */
+            --fall-duration-min: 14s;
+            --fall-duration-max: 22s;
+
+            /* Font size */
+            --font-size-thiep: clamp(1px, 1.5vw, 1000px);
+            --font-size-anh: clamp(1px, 2vw, 1000px);
+
+            /* sân cỏ trái */
+            --co-trai-size: 63vw;
+            --co-trai-max: 5000px;
+            --co-trai-offset-x: 0px;
+            --co-trai-offset-y: 0px;
+
+            /* sân cỏ phai */
+            --co-phai-size: 58vw;
+            --co-phai-max: 5000px;
+            --co-phai-offset-x: 0px;
+            --co-phai-offset-y: 0px;
+
+            /* chậu quýt */
+            --quyt-size: 50vw;
+            --quyt-max: 5000px;
+            --quyt-offset-x: 0px;
+            --quyt-offset-y: 0px;
+
+            /* chậu đào */
+            --chau-dao-size: 65vw;
+            --chau-dao-max: 5000px;
+            --chau-dao-offset-x: 0px;
+            --chau-dao-offset-y: 0px;
+
+            /* hai đứa trẻ */
+            --hdt-size: 60vw;
+            --hdt-max: 5000px;
+            --hdt-offset-x: 0px;
+            --hdt-offset-y: 0px;
+
+            /* bàn ăn */
+            --ban-an-size: 30vw;
+            --ban-an-max: 5000px;
+            --ban-an-offset-x: 0px;
+            --ban-an-offset-y: 0px;
+
+            /* hoa quả */
+            --hoa-qua-size: 30vw;
+            --hoa-qua-max: 5000px;
+            --hoa-qua-offset-x: 0px;
+            --hoa-qua-offset-y: 0px;
+
+            /* bà và các cháu */
+            --bvcc-size: 70vw;
+            --bvcc-max: 5000px;
+            --bvcc-offset-x: 0px;
+            --bvcc-offset-y: 0px;
+
+            /* pháo hoa */
+            --phao-hoa-size: 50vw;
+            --phao-hoa-max: 5000px;
+            --phao-hoa-offset-x: 0px;
+            --phao-hoa-offset-y: 0px;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background 2.5s ease;
+        }
+
+        #rotateScreen {
+            position: fixed;
+            inset: 0;
+            background: black;
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .rotate-box {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #startBtn {
+            padding: 18px 40px;
+            font-size: 22px;
+            border: none;
+            border-radius: 40px;
+            background: linear-gradient(45deg, #ff5252, #ffb300);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 200, 0, 0.8);
+        }
+
+        @font-face {
+            font-family: "TetFont";
+            src: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/202e0674ff4858d19e9c4d18cee0314c30a7529d/SVN-Dancing-script.ttf") format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: "ThuongFont";
+            src: url("https://cdn.jsdelivr.net/gh/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan@main/SVN-Freude.ttf") format("truetype");
+            /*link CDN*/
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        #rotateScreen {
+            position: fixed;
+            inset: 0;
+            background: black;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        #phoneIcon {
+            width: 100px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: phoneAnim 1.8s linear infinite;
+            filter: drop-shadow(0 0 12px white);
+        }
+
+        .rotateText {
+            font-family: "ThuongFont", cursive;
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 15px #fff,
+                0 0 30px rgba(255, 255, 255, 0.9);
+            animation: glowText 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes phoneAnim {
+            0% {
+                opacity: 0;
+                transform: rotate(0deg);
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+                transform: rotate(-90deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: rotate(-90deg);
+            }
+        }
+
+        @keyframes glowText {
+            from {
+                text-shadow:
+                    0 0 5px #fff,
+                    0 0 15px #fff;
+            }
+
+            to {
+                text-shadow:
+                    0 0 10px #fff,
+                    0 0 25px #fff,
+                    0 0 40px rgba(255, 255, 255, 1);
+            }
+        }
+
+        @keyframes swayBranch {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(0.8deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            75% {
+                transform: rotate(-0.8deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes floatText {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(2px, -3px);
+            }
+
+            50% {
+                transform: translate(0, -1px);
+            }
+
+            75% {
+                transform: translate(-2px, -3px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes datbiet {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-2px, 3px);
+            }
+
+            50% {
+                transform: translate(0, 1px);
+            }
+
+            75% {
+                transform: translate(2px, 3px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        #introScreen {
+            position: fixed;
+            inset: 0;
+            background: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+
+        #introBox {
+            padding: 40px 60px;
+            border: 2px solid white;
+            opacity: 0;
+            box-shadow: 0 0 20px white;
+            transition: opacity 1.5s ease;
+            position: relative;
+        }
+
+        #introText {
+            font-family: "ThuongFont", cursive;
+            font-size: 38px;
+            color: white;
+            text-align: center;
+            white-space: pre-line;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 15px #fff,
+                0 0 30px rgba(255, 255, 255, 0.9);
+        }
+
+        #tapHint {
+            position: absolute;
+            bottom: -28px;
+            right: 0;
+            font-size: 14px;
+            color: white;
+            font-family: "ThuongFont", cursive;
+            letter-spacing: 0.5px;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        #loadingScreen {
+            position: fixed;
+            inset: 0;
+            background: black;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+        }
+
+        .loadingText {
+            font-family: "ThuongFont", cursive;
+            font-size: 28px;
+            color: white;
+            text-shadow:
+                0 0 5px #fff,
+                0 0 15px #fff,
+                0 0 30px rgba(255, 255, 255, 0.9);
+            animation: glowText 2s ease-in-out infinite alternate;
+        }
+
+        .loadingBox {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .progressBar {
+            width: 280px;
+            height: 8px;
+            border: 1px solid white;
+            box-shadow: 0 0 10px white;
+            overflow: hidden;
+        }
+
+        .progressFill {
+            width: 0%;
+            height: 100%;
+            background: white;
+            box-shadow: 0 0 15px white;
+            transition: width 0.3s ease;
+        }
+
+        .progressPercent {
+            font-family: "ThuongFont", cursive;
+            font-size: 18px;
+            color: white;
+        }
+
+        #loadingScreen {
+            transition: opacity 1.2s ease;
+        }
+
+        #fullscreenBtn {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 9999999;
+            width: 30px;
+            height: 30px;
+            font-size: 20px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            background: rgba(0, 0, 0, 0);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+        }
+
+        #fullscreenBtn:active {
+            transform: scale(0.95);
+        }
+
+        #mai-anchor {
+            position: fixed;
+            top: 0;
+            right: 0;
+            transform: translate(var(--mai-offset-x), var(--mai-offset-y));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        #mai-branch {
+            width: clamp(180px, var(--mai-size), var(--mai-max));
+            aspect-ratio: 1 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/canh_cay_phai.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: top right;
+            transform-origin: top right;
+            opacity: 0;
+            transform: translateX(120px);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #mai-left-anchor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(var(--mai-left-offset-x), var(--mai-left-offset-y));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        #mai-left-branch {
+            width: clamp(180px, var(--mai-left-size), var(--mai-left-max));
+            aspect-ratio: 1 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/canh_cay_trai.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: top bottom;
+            transform-origin: top bottom;
+            opacity: 0;
+            transform: translateX(-120px);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #co-trai-anchor {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            transform: translate(var(--co-trai-offset-x), var(--co-trai-offset-y));
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #co-trai-branch {
+            width: clamp(180px, var(--co-trai-size), var(--co-trai-max));
+            aspect-ratio: 1 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/co_trai.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: bottom left;
+            transform-origin: bottom left;
+            opacity: 0;
+            transform: translateY(120px);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #co-phai-anchor {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            transform: translate(var(--co-phai-offset-x), var(--co-phai-offset-y));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        #co-phai-branch {
+            width: clamp(180px, var(--co-phai-size), var(--co-phai-max));
+            aspect-ratio: 1 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/co_phai.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: bottom right;
+            transform-origin: bottom right;
+            opacity: 0;
+            transform: translateX(120px);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #tet-text-anchor {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(calc(-50% + var(--tet-offset-x)), calc(-50% + var(--tet-offset-y)));
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        #tet-text {
+            width: clamp(180px, var(--tet-size), var(--tet-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/tet_2026.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #lan-anchor {
+            position: fixed;
+            top: 69%;
+            left: 81.5%;
+            transform: translate(calc(-50% + var(--lan-offset-x)), calc(-50% + var(--lan-offset-y)));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        #lan {
+            width: clamp(180px, var(--lan-size), var(--lan-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/lan.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #hdt-anchor {
+            position: fixed;
+            top: 85%;
+            left: 65%;
+            transform: translate(calc(-50% + var(--hdt-offset-x)), calc(-50% + var(--hdt-offset-y)));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        #hdt {
+            width: clamp(180px, var(--hdt-size), var(--hdt-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/hdt.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #ban-an-anchor {
+            position: fixed;
+            top: 90%;
+            left: 49%;
+            transform: translate(calc(-50% + var(--ban-an-offset-x)), calc(-50% + var(--ban-an-offset-y)));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        #ban-an {
+            width: clamp(180px, var(--ban-an-size), var(--ban-an-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/ban_an.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #hoa-qua-anchor {
+            position: fixed;
+            top: 80%;
+            left: 38%;
+            transform: translate(calc(-50% + var(--hoa-qua-offset-x)), calc(-50% + var(--hoa-qua-offset-y)));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        #hoa-qua {
+            width: clamp(180px, var(--hoa-qua-size), var(--hoa-qua-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/hoa_qua.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #bvcc-anchor {
+            position: fixed;
+            top: 75%;
+            left: 20%;
+            transform: translate(calc(-50% + var(--bvcc-offset-x)), calc(-50% + var(--bvcc-offset-y)));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        #bvcc {
+            width: clamp(180px, var(--bvcc-size), var(--bvcc-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/bvcc.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #phao-hoa-anchor {
+            position: fixed;
+            top: 15%;
+            left: 46%;
+            transform: translate(calc(-50% + var(--phao-hoa-offset-x)), calc(-50% + var(--phao-hoa-offset-y)));
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        #phao-hoa {
+            width: clamp(180px, var(--phao-hoa-size), var(--phao-hoa-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/phao_hoa.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #quyt-anchor {
+            position: fixed;
+            top: 73%;
+            left: 93%;
+            transform: translate(calc(-50% + var(--quyt-offset-x)), calc(-50% + var(--quyt-offset-y)));
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        #quyt {
+            width: clamp(180px, var(--quyt-size), var(--quyt-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/chau_quych.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        #dao-anchor {
+            position: fixed;
+            top: 75%;
+            left: 5%;
+            transform: translate(calc(-50% + var(--chau-dao-offset-x)), calc(-50% + var(--chau-dao-offset-y)));
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        #dao {
+            width: clamp(180px, var(--chau-dao-size), var(--chau-dao-max));
+            aspect-ratio: 3 / 1;
+            background-image: url("https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/chau_dao.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0;
+            transform: scale(0.95);
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
+
+        .leaf {
+            position: fixed;
+            top: -60px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        #card-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.2s ease;
+            z-index: 10;
+        }
+
+
+        #card-anchor {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -40%);
+            transition: opacity 1s ease, transform 1s ease;
+            opacity: 0;
+            z-index: 999;
+        }
+
+        #card {
+            width: clamp(260px, var(--card-width), var(--card-max-width));
+            aspect-ratio: var(--card-ratio);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition:
+                opacity 1.2s ease,
+                transform 1.2s ease;
+        }
+
+        #card-text-box {
+            position: absolute;
+            top: var(--text-top);
+            bottom: var(--text-bottom);
+            left: var(--text-left);
+            right: var(--text-right);
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        #card-text-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        #card-text {
+            font-family: "ThuongFont", cursive;
+            font-size: var(--font-size-thiep);
+            line-height: 1.55;
+            color: #5a2a0c;
+            white-space: pre-wrap;
+            word-break: normal;
+            overflow-wrap: break-word;
+            display: block;
+        }
+
+        #card-close {
+            position: absolute;
+            top: 24%;
+            right: 0;
+            transform: translate(-12px, 12px);
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffd2c2;
+            border: 5px solid #761413;
+            border-radius: 8px;
+            color: #761413;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        #card-close:hover {
+            background: #ffbeab;
+            transform: translate(-12px, 12px) scale(1.08);
+        }
+
+        #reopen-card-btn {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            z-index: 1000;
+        }
+
+        #reopen-card-btn img {
+            width: 48px;
+            height: auto;
+            cursor: pointer;
+            filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.3));
+        }
+
+        #reopen-card-btn.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .fall-item {
+            position: fixed;
+            top: -120px;
+            pointer-events: none;
+            z-index: 4;
+            animation-name: fallDown, sway;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+        }
+
+        @keyframes fallDown {
+            from {
+                transform: translateY(-120px);
+            }
+
+            to {
+                transform: translateY(calc(100vh + 140px));
+            }
+        }
+
+        @keyframes sway {
+            0% {
+                margin-left: 0;
+            }
+
+            50% {
+                margin-left: 20px;
+            }
+
+            100% {
+                margin-left: 0;
+            }
+        }
+
+        .fall-lixi {
+            width: var(--lixi-size);
+            pointer-events: auto !important;
+            z-index: 6;
+        }
+
+        .lixi-spin {
+            width: 100%;
+            height: 100%;
+            background-size: 101% 101%;
+            background-repeat: no-repeat;
+            background-position: center;
+            animation-name: spin;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .fall-photo {
+            width: var(--photo-size, 800px);
+            height: var(--photo-size, 800px);
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #ffffff !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+            border-radius: 0px;
+            cursor: pointer;
+            z-index: 4;
+            box-sizing: border-box;
+        }
+
+        .fall-emoji {
+            position: fixed;
+            top: -80px;
+            pointer-events: none;
+            z-index: 4;
+            animation-name: fallDown, sway;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+        }
+
+        .emoji-spin {
+            font-size: var(--icon-size);
+            line-height: 1;
+            animation-name: spin;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .fall-lixi {
+            position: fixed;
+            top: -120px;
+            left: 0;
+            pointer-events: auto !important;
+            z-index: 6;
+            width: var(--lixi-size, 80px);
+            height: var(--lixi-size, 80px);
+            animation-name: fallDown, sway;
+            animation-timing-function: linear, ease-in-out;
+            animation-iteration-count: infinite, infinite;
+        }
+
+        .lixi-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .lixi-popup {
+            position: relative;
+            width: 320px;
+            height: 220px;
+            background: transparent;
+            transform: scale(0.8);
+            transition: transform 0.35s ease;
+        }
+
+        .lixi-overlay.show .lixi-popup {
+            transform: scale(1);
+        }
+
+        .popup-lixi {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            max-width: 100%;
+            max-height: 100%;
+            transform: rotate(90deg);
+            z-index: 1;
+            border-radius: 14px;
+        }
+
+        .popup-money {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            max-width: 90%;
+            max-height: 90%;
+            z-index: 2;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+            transform: rotate(0deg);
+        }
+
+
+        .lixi-popup img {
+            max-width: 80vw;
+            max-height: 60vh;
+            transform: rotate(-90deg);
+            border-radius: 12px;
+        }
+
+        .lixi-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 35px;
+            height: 35px;
+            background: #fff;
+            border: 2px solid #761413;
+            border-radius: 50%;
+            color: #761413;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .lixi-close:hover {
+            background: #eee;
+            transform: scale(1.1);
+        }
+
+        @keyframes superVibrate {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            10% {
+                transform: rotate(-1deg) scale(1.05);
+            }
+
+            20% {
+                transform: rotate(1deg) scale(1.1);
+            }
+
+            30% {
+                transform: rotate(-3deg) scale(1.15);
+            }
+
+            45% {
+                transform: rotate(3deg) scale(1.2);
+            }
+
+            55% {
+                transform: rotate(-5deg) scale(1.25);
+            }
+
+            65% {
+                transform: rotate(5deg) scale(1.3);
+            }
+
+            75% {
+                transform: rotate(-10deg) scale(1.35);
+            }
+
+            85% {
+                transform: rotate(10deg) scale(1.37);
+            }
+
+            87.5% {
+                transform: rotate(-10deg) scale(1.4);
+            }
+
+            90% {
+                transform: rotate(10deg) scale(1.425);
+            }
+
+            92.5% {
+                transform: rotate(-10deg) scale(1.45);
+            }
+
+            95% {
+                transform: rotate(10deg) scale(1.47);
+            }
+
+            97.5% {
+                transform: rotate(-10deg) scale(1.5);
+            }
+
+            100% {
+                transform: rotate(0deg) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        .flash-white {
+            position: fixed;
+            inset: 0;
+            background: #ffffff;
+            z-index: 99999;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .flash-active {
+            animation: flashStep 1s ease-out forwards;
+        }
+
+        @keyframes flashStep {
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .tap-hint {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 13px;
+            z-index: 10001;
+            opacity: 0;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+            font-family: "ThuongFont", cursive;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .photo-himt {
+            position: fixed;
+            bottom: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            font-size: 13px;
+            z-index: 10001;
+            opacity: 0;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+            font-family: "ThuongFont", cursive;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fall-photo.viewing {
+            position: fixed !important;
+            z-index: 100002 !important;
+            border: 2px solid #ffffff !important;
+            outline: none !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+        }
+
+        #photo-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10001;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        #photo-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #photo-caption-box {
+            position: fixed;
+            top: 50%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+            width: 35vw;
+            color: #fff;
+            text-align: left;
+            z-index: 100003;
+            pointer-events: none;
+            font-family: "ThuongFont", cursive;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #photo-caption-box.show {
+            opacity: 1;
+        }
+
+        #photo-caption-box p {
+            font-size: var(--font-size-anh);
+            line-height: 1.4;
+        }
+
+        #caption-title,
+        #caption-text {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+            transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        #photo-caption-box.active #caption-title {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        #photo-caption-box.active #caption-text {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+            transition-delay: 0.6s;
+
+        }
+
+        #photo-caption-box.fading {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <div id="photo-caption-box">
+        <p id="caption-text"></p>
+    </div>
+
+    <div id="photo-hint" style="
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: 'ThuongFont', cursive;
+    font-size: 13px;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+    opacity: 0;
+    transition: opacity 1.5s ease;
+    z-index: 100005;
+    pointer-events: none;
+    white-space: nowrap;
+">
+        * Nhấn vào màn hình để tiếp tục *
+    </div>
+
+    <div id="photo-overlay"></div>
+
+    <div class="fall-lixi">
+        <div class="lixi-spin"></div>
+    </div>
+
+    <div id="lan-anchor">
+        <div id="lan"></div>
+    </div>
+
+    <div id="hdt-anchor">
+        <div id="hdt"></div>
+    </div>
+
+    <div id="ban-an-anchor">
+        <div id="ban-an"></div>
+    </div>
+
+    <div id="hoa-qua-anchor">
+        <div id="hoa-qua"></div>
+    </div>
+
+    <div id="bvcc-anchor">
+        <div id="bvcc"></div>
+    </div>
+
+    <div id="phao-hoa-anchor">
+        <div id="phao-hoa"></div>
+    </div>
+
+    <div id="quyt-anchor">
+        <div id="quyt"></div>
+    </div>
+
+    <div id="dao-anchor">
+        <div id="dao"></div>
+    </div>
+
+    <div id="tet-text-anchor">
+        <div id="tet-text"></div>
+    </div>
+
+    <div id="mai-anchor">
+        <div id="mai-branch"></div>
+    </div>
+
+    <div id="mai-left-anchor">
+        <div id="mai-left-branch"></div>
+    </div>
+
+    <div id="co-trai-anchor">
+        <div id="co-trai-branch"></div>
+    </div>
+
+    <div id="co-phai-anchor">
+        <div id="co-phai-branch"></div>
+    </div>
+
+    <div id="rotateScreen">
+        <img id="phoneIcon"
+            src="https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/phone.png"
+            alt="Rotate phone" />
+        <div class="rotateText">Vui lòng xoay ngang màn hình</div>
+    </div>
+
+    <div id="introScreen">
+        <div id="introBox">
+            <div id="introText"></div>
+            <div id="tapHint"></div>
+        </div>
+    </div>
+
+    <div id="loadingScreen">
+        <div class="loadingBox">
+            <div class="loadingText">Loading...</div>
+            <div class="progressBar">
+                <div class="progressFill"></div>
+            </div>
+            <div class="progressPercent">0%</div>
+        </div>
+    </div>
+
+    <canvas id="fireworks"></canvas>
+    <script>
+        const canvas = document.getElementById("fireworks");
+        const ctx = canvas.getContext("2d");
+        const rotateScreen = document.getElementById("rotateScreen");
+        let started = false;
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+        function preloadMoneyImages() {
+            console.log("Đang tải trước ảnh tiền theo tỉ lệ...");
+            moneyWeights.forEach((item) => {
+                const img = new Image();
+                img.src = item.url;
+            });
+        }
+
+        function checkOrientation() {
+            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+            if (!isMobile) {
+                rotateScreen.style.display = "none";
+                startIntro();
+                return true;
+            }
+            if (window.innerHeight > window.innerWidth) {
+                rotateScreen.style.display = "flex";
+                return false;
+            }
+            rotateScreen.style.display = "none";
+            startIntro();
+            return true;
+        }
+
+        window.addEventListener("resize", checkOrientation);
+        window.addEventListener("orientationchange", checkOrientation);
+        checkOrientation();
+    </script>
+
+    <script>
+        function enterFullscreen() {
+            const el = document.documentElement;
+            if (el.requestFullscreen) {
+                el.requestFullscreen();
+            } else if (el.webkitRequestFullscreen) {
+                el.webkitRequestFullscreen();
+            }
+        }
+    </script>
+
+    <script>
+        let audioCtx;
+        let bgBuffer;
+        let bgSource;
+
+        async function initAudio() {
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (audioCtx.state === "suspended") {
+                    await audioCtx.resume();
+                }
+
+                const files = [
+                    { name: "bg", url: "audio/bg.mp3" },
+                ];
+
+                let totalBytes = 0;
+                let loadedBytes = 0;
+
+                for (const file of files) {
+                    const res = await fetch(file.url, { method: "HEAD" });
+                    const size = res.headers.get("Content-Length");
+                    totalBytes += Number(size);
+                }
+
+                function updateProgress() {
+                    const percent = Math.min(
+                        100,
+                        Math.floor((loadedBytes / totalBytes) * 100)
+                    );
+                    progressFill.style.width = percent + "%";
+                    progressPercent.textContent = percent + "%";
+                }
+
+                for (const file of files) {
+                    const response = await fetch(file.url);
+                    const reader = response.body.getReader();
+                    let chunks = [];
+                    let received = 0;
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        chunks.push(value);
+                        received += value.length;
+                        loadedBytes += value.length;
+                        updateProgress();
+                    }
+
+                    const audioBuffer = await audioCtx.decodeAudioData(
+                        mergeChunks(chunks, received)
+                    );
+                    if (file.name === "bg") bgBuffer = audioBuffer;
+                }
+
+                updateProgress();
+                console.log("All audio loaded with real progress");
+
+            } catch (err) {
+                console.error("Audio load error:", err);
+                alert("Không tải được âm thanh 😥, vui lòng tải lại trang hoặc tiếp tục mà không có âm thanh!!");
+            }
+        }
+
+        function mergeChunks(chunks, totalLength) {
+            const buffer = new Uint8Array(totalLength);
+            let offset = 0;
+
+            for (const chunk of chunks) {
+                buffer.set(chunk, offset);
+                offset += chunk.length;
+            }
+
+            return buffer.buffer;
+        }
+
+        function playBG() {
+            if (!bgBuffer || !audioCtx) return;
+            bgSource = audioCtx.createBufferSource();
+            bgSource.buffer = bgBuffer;
+            bgSource.loop = true;
+            const gainNode = audioCtx.createGain();
+            gainNode.gain.value = 0.4;
+            bgSource.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+            bgSource.start(0);
+        }
+
+        const LEAF_CONFIG = {
+            maxLeaves: 60,
+            fallSpeed: 1,
+            rotateSpeed: 0.5,
+            tiltAngle: 45,
+            leafSize: 80,
+            fallAngle: -45
+        };
+
+        const maiLeaves = [
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la1.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la2.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la3.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la4.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la5.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la6.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la7.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la8.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/la9.png"
+        ];
+
+        function createLeaf() {
+            if (document.querySelectorAll(".leaf").length >= LEAF_CONFIG.maxLeaves) {
+                return;
+            }
+
+            const leaf = document.createElement("div");
+            leaf.className = "leaf";
+            leaf.style.width = `${LEAF_CONFIG.leafSize}px`;
+            leaf.style.height = `${LEAF_CONFIG.leafSize}px`;
+            const img = maiLeaves[Math.floor(Math.random() * maiLeaves.length)];
+            leaf.style.backgroundImage = `url(${img})`;
+            const screenWidth = window.innerWidth;
+            const rand = Math.random();
+            let startX;
+
+            if (rand < 0.25) {
+                startX = Math.random() * screenWidth * 0.25;
+            } else if (rand > 0.7) {
+                startX = screenWidth * 0.6 + Math.random() * screenWidth * 0.4;
+            } else {
+                return;
+            }
+
+            let x = startX;
+            let y = -50;
+            let rotation = 0;
+            const angleRad = LEAF_CONFIG.fallAngle * Math.PI / 180;
+            const speedX = Math.sin(angleRad) * LEAF_CONFIG.fallSpeed;
+            const speedY = Math.cos(angleRad) * LEAF_CONFIG.fallSpeed;
+            leaf.style.left = `${startX}px`;
+            leaf.style.transform = `rotate(${rotation}deg)`;
+            document.body.appendChild(leaf);
+            function fall() {
+                x += speedX;
+                y += speedY;
+                rotation += LEAF_CONFIG.rotateSpeed;
+                leaf.style.left = `${x}px`;
+                leaf.style.top = `${y}px`;
+                leaf.style.transform = `rotate(${rotation}deg)`;
+                if (y < window.innerHeight + 60) {
+                    requestAnimationFrame(fall);
+                } else {
+                    leaf.remove();
+                }
+            }
+
+            requestAnimationFrame(fall);
+        }
+    </script>
+
+    <script>
+        const progressFill = document.querySelector(".progressFill");
+        const progressPercent = document.querySelector(".progressPercent");
+        const loadingScreen = document.getElementById("loadingScreen");
+        const introScreen = document.getElementById("introScreen");
+        const introBox = document.getElementById("introBox");
+        const introText = document.getElementById("introText");
+        const tapHint = document.getElementById("tapHint");
+        const mainText = "Quên đi muộn phiền năm cũ\n Cùng đón Tết đi nào!";
+        const hintText = "Nhấn vào màn hình";
+        const music = new Audio("https://raw.githubusercontent.com/tzydangyeu-cmd/Nam_moi_cho_em/main/sounds/bg.mp3");
+        let textIndex = 0;
+        let hintIndex = 0;
+        let introDone = false;
+
+        function typeMainText() {
+            if (textIndex < mainText.length) {
+                introText.textContent += mainText.charAt(textIndex);
+                textIndex++;
+                setTimeout(typeMainText, 60);
+            } else {
+                setTimeout(typeHintText, 500);
+            }
+        }
+
+        function typeHintText() {
+            if (hintIndex < hintText.length) {
+                tapHint.textContent += hintText.charAt(hintIndex);
+                hintIndex++;
+                setTimeout(typeHintText, 80);
+            } else {
+                introDone = true;
+            }
+        }
+
+        let introStarted = false;
+
+        function startIntro() {
+            if (introStarted) return;
+            introStarted = true;
+            introScreen.style.display = "flex";
+            introText.textContent = "";
+            tapHint.textContent = "";
+            introBox.style.opacity = 1;
+            setTimeout(typeMainText, 800);
+        }
+
+        introScreen.addEventListener("click", async () => {
+            if (!introDone) return;
+            enterFullscreen();
+            loadCardImage();
+            preloadMoneyImages();
+            introScreen.style.transition = "opacity 1.5s ease";
+            introScreen.style.opacity = 0;
+            setTimeout(async () => {
+                introScreen.remove();
+                loadingScreen.style.display = "flex";
+                await initAudio();
+                setTimeout(() => {
+                    loadingScreen.style.opacity = 0;
+                    setTimeout(() => {
+                        loadingScreen.remove();
+                        document.body.style.background = "#fffde4";
+
+                        // icon rơi
+                        setTimeout(() => {
+                            startFallingEffect();
+                        }, 0);
+
+                        // cành phải--
+                        const branch = document.getElementById("mai-branch");
+                        setTimeout(() => {
+                            branch.style.opacity = 1;
+                            branch.style.transform = "translateX(0)";
+
+                            setTimeout(() => {
+                                branch.style.animation = "swayBranch 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 2000);
+                        //end
+
+                        // cành trái --
+                        const leftBranch = document.getElementById("mai-left-branch");
+                        setTimeout(() => {
+                            leftBranch.style.opacity = 1;
+                            leftBranch.style.transform = "translateX(0)";
+
+                            setTimeout(() => {
+                                leftBranch.style.animation = "swayBranch 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 2000);
+                        // end
+
+                        // cỏ trái --
+                        const cotrai = document.getElementById("co-trai-branch");
+                        setTimeout(() => {
+                            cotrai.style.opacity = 1;
+                            cotrai.style.transform = "translateY(0)";
+                        }, 1500);
+                        // end
+
+                        // cỏ phải --
+                        const cophai = document.getElementById("co-phai-branch");
+                        setTimeout(() => {
+                            cophai.style.opacity = 1;
+                            cophai.style.transform = "translateX(0)";
+                        }, 1600);
+                        // end
+
+                        // tết
+                        const tetText = document.getElementById("tet-text");
+                        setTimeout(() => {
+                            tetText.style.opacity = 1;
+                            tetText.style.transform = "scale(1)";
+
+                            setTimeout(() => {
+                                tetText.style.animation = "floatText 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 1000);
+                        // end
+
+                        // lân
+                        const lan = document.getElementById("lan");
+                        setTimeout(() => {
+                            lan.style.opacity = 1;
+                            lan.style.transform = "scale(1)";
+
+                            setTimeout(() => {
+                                lan.style.animation = "floatText 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 3000);
+                        // end
+
+                        // hai đứa trẻ
+                        const hdt = document.getElementById("hdt");
+                        setTimeout(() => {
+                            hdt.style.opacity = 1;
+                            hdt.style.transform = "scale(1)";
+
+                            setTimeout(() => {
+                                hdt.style.animation = "datbiet 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 3300);
+                        // end
+
+                        // bàn ăn
+                        const banan = document.getElementById("ban-an");
+                        setTimeout(() => {
+                            banan.style.opacity = 1;
+                            banan.style.transform = "scale(1)";
+
+                            setTimeout(() => {
+                                banan.style.animation = "floatText 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 3200);
+                        // end
+
+                        // hoa quả
+                        const hoaqua = document.getElementById("hoa-qua");
+                        setTimeout(() => {
+                            hoaqua.style.opacity = 1;
+                            hoaqua.style.transform = "scale(1)";
+
+                            setTimeout(() => {
+                                hoaqua.style.animation = "datbiet 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 3200);
+                        // end
+
+                        // bà và các cháu
+                        const bvcc = document.getElementById("bvcc");
+                        setTimeout(() => {
+                            bvcc.style.opacity = 1;
+                            bvcc.style.transform = "scale(1)";
+
+                            setTimeout(() => {
+                                bvcc.style.animation = "floatText 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 3000);
+                        // end
+
+                        // pháo hoa
+                        const phaohoa = document.getElementById("phao-hoa");
+                        setTimeout(() => {
+                            phaohoa.style.opacity = 1;
+                            phaohoa.style.transform = "scale(1)";
+
+                            setTimeout(() => {
+                                phaohoa.style.animation = "floatText 6s ease-in-out infinite";
+                            }, 2000);
+                        }, 3000);
+                        // end
+
+                        // chậu quýt
+                        const quyt = document.getElementById("quyt");
+                        setTimeout(() => {
+                            quyt.style.opacity = 1;
+                            quyt.style.transform = "scale(1)";
+
+                        }, 1500);
+                        // end
+
+                        // chậu đào
+                        const dao = document.getElementById("dao");
+                        setTimeout(() => {
+                            dao.style.opacity = 1;
+                            dao.style.transform = "scale(1)";
+
+                        }, 1500);
+                        // end
+
+                        // lá mai rơi
+                        setTimeout(() => {
+                            setInterval(createLeaf, 800);
+                        }, 2000);
+                        // end
+
+                        // thiệp 
+                        setTimeout(() => {
+                            openCard();
+                        }, 5000);
+                        // end
+
+                        playBG();
+                    }, 1000);
+                }, 50);
+            }, 1000);
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+            if (!isMobile) {
+                console.log("PC detected → start intro");
+                startIntro();
+            }
+        });
+    </script>
+
+    <script>
+        function hexToRgb(hex) {
+            hex = hex.replace("#", "");
+            const bigint = parseInt(hex, 16);
+            return {
+                r: (bigint >> 16) & 255,
+                g: (bigint >> 8) & 255,
+                b: bigint & 255
+            };
+        }
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        function isFullscreen() {
+            return document.fullscreenElement !== null;
+        }
+
+        function updateFullscreenButton() {
+            fullscreenBtn.textContent = isFullscreen()
+                ? 'Thoát toàn màn hình'
+                : 'Toàn màn hình';
+        }
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (!isFullscreen()) {
+                document.documentElement.requestFullscreen().catch(() => { });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        document.addEventListener('fullscreenchange', updateFullscreenButton);
+        updateFullscreenButton();
+    </script>
+    <button id="fullscreenBtn" aria-label="Fullscreen">⛶</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('fullscreenBtn');
+
+            function isFullscreen() {
+                return document.fullscreenElement ||
+                    document.webkitFullscreenElement;
+            }
+
+            function requestFS() {
+                const el = document.documentElement;
+                if (el.requestFullscreen) return el.requestFullscreen();
+                if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+            }
+
+            function exitFS() {
+                if (document.exitFullscreen) return document.exitFullscreen();
+                if (document.webkitExitFullscreen) return document.webkitExitFullscreen();
+            }
+
+            function updateIcon() {
+                btn.textContent = isFullscreen() ? '⤡' : '⛶';
+            }
+
+            btn.addEventListener('click', () => {
+                if (!isFullscreen()) {
+                    requestFS();
+                } else {
+                    exitFS();
+                }
+            });
+
+            document.addEventListener('fullscreenchange', updateIcon);
+            document.addEventListener('webkitfullscreenchange', updateIcon);
+            updateIcon();
+        });
+    </script>
+    <div id="card-overlay">
+        <div id="card-anchor">
+            <div id="card">
+                <button id="card-close">x</button>
+                <div id="card-text-box">
+                    <div id="card-text"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="reopen-card-btn">
+        <img src="https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/icon_thiep.png"
+            alt="Mở lại thiệp" />
+    </div>
+
+    <script>
+        const wishText = `Một năm cũ đã khép lại ⏳, năm mới lại đến mang theo thật nhiều hy vọng mới 🌱. Nhân dịp Tết đến Xuân về, chúc mọi người có một cái Tết thật vui vẻ 🎉, bình an 🕊️ và hạnh phúc 💖. Chúc cho năm mới sẽ là một năm đầy may mắn 🍀, công việc thuận lợi 💼, học tập tiến bộ 📚, tiền vô như nước 💰, niềm vui thì luôn đầy ắp 😄. Chúc cho gia đình lúc nào cũng đầm ấm 👨‍👩‍👧‍👦, bữa cơm lúc nào cũng rộn ràng tiếng cười 🍲😂, nhà cửa lúc nào cũng ngập tràn yêu thương 🏡❤️. Chúc cho ai đang mệt mỏi 😔, sẽ sớm tìm lại năng lượng 💪, ai đang buồn 😢, sẽ sớm có thật nhiều niềm vui 😆, ai đang cố gắng ✨ sẽ sớm gặt hái được thành công 🌟. Mong rằng năm mới sẽ mang đến nhiều cơ hội mới 🚀, nhiều kỷ niệm đẹp 📸, và thật nhiều điều tốt lành 🎁.
+Chúc mừng năm mới! 🎊
+An Khang 🧧 – Thịnh Vượng 💎 – Sức Khỏe Dồi Dào 💪 – Vạn Sự Như Ý 🌸!
+
+Giờ bạn thư mở lì xì hoặc nhấn vào một bức ảnh để có bất ngờ nhé`;
+
+        const overlay = document.getElementById("card-overlay");
+        const anchor = document.getElementById("card-anchor");
+        const card = document.getElementById("card");
+        const cardText = document.getElementById("card-text");
+        const closeBtn = document.getElementById("card-close");
+        const reopenBtn = document.getElementById("reopen-card-btn");
+        let typedIndex = 0;
+        let typingRunning = false;
+        let typingDone = false;
+        let typingTimer = null;
+        let textRendered = false;
+        let allCharSpans = [];
+        reopenBtn.addEventListener("click", () => {
+            openCard();
+        });
+
+        let cardImageReady = false;
+
+        function loadCardImage() {
+            return new Promise((resolve) => {
+                if (cardImageReady) {
+                    resolve();
+                    return;
+                }
+
+                const img = new Image();
+                img.src = "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/thiep.png";
+
+                img.onload = () => {
+                    card.style.backgroundImage = `url(${img.src})`;
+                    cardImageReady = true;
+                    resolve();
+                };
+
+                img.onerror = () => {
+                    console.warn("Không load được ảnh thiệp");
+                    resolve();
+                };
+            });
+        }
+
+        function openCard() {
+            initText(cardText, wishText);
+            resumeTyping(90);
+            if (!cardImageReady) return;
+            reopenBtn.classList.remove("show");
+            overlay.style.opacity = "1";
+            overlay.style.pointerEvents = "auto";
+
+            setTimeout(() => {
+                anchor.style.opacity = 1;
+                anchor.style.transform = "translate(-50%, -50%)";
+                card.style.opacity = 1;
+                card.style.transform = "translateY(0)";
+            }, 120);
+
+            setTimeout(() => {
+                if (!typingDone && !typingRunning) {
+                    typingRunning = true;
+                    typeText(cardText, wishText, 90);
+                }
+            }, 800);
+
+        }
+        function closeCard() {
+            typingRunning = false;
+            clearTimeout(typingTimer);
+        }
+
+
+        closeBtn.onclick = () => {
+            typingRunning = false;
+            clearTimeout(typingTimer);
+            card.style.opacity = 0;
+            card.style.transform = "translateY(20px)";
+            anchor.style.opacity = 0;
+            anchor.style.transform = "translate(-50%, -40%)";
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            reopenBtn.classList.add("show");
+        };
+
+        function initText(element, text) {
+            if (textRendered) return;
+            element.innerHTML = "";
+            allCharSpans = [];
+            const segmenter = new Intl.Segmenter("vi", { granularity: "grapheme" });
+            const words = text.split(/(\s+)/);
+
+            words.forEach(word => {
+                if (word.trim() === "") {
+                    element.appendChild(document.createTextNode(word));
+                } else {
+                    const wrapper = document.createElement("span");
+                    wrapper.style.whiteSpace = "nowrap";
+
+                    Array.from(segmenter.segment(word)).forEach(s => {
+                        const span = document.createElement("span");
+                        span.textContent = s.segment;
+                        span.style.position = "relative";
+                        span.style.top = "6px";
+                        span.style.opacity = "0";
+                        span.style.transition = "top 0.25s ease, opacity 0.25s ease";
+                        wrapper.appendChild(span);
+                        allCharSpans.push(span);
+                    });
+
+                    element.appendChild(wrapper);
+                }
+            });
+
+            textRendered = true;
+        }
+
+        function resumeTyping(speed) {
+            if (typingRunning) return;
+            typingRunning = true;
+
+            function showNext() {
+                if (!typingRunning) return;
+
+                if (typedIndex < allCharSpans.length) {
+                    const span = allCharSpans[typedIndex];
+                    span.style.opacity = "1";
+                    requestAnimationFrame(() => {
+                        span.style.top = "0px";
+                    });
+                    typedIndex++;
+                    if (typedIndex % 3 === 0) {
+                        span.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                    }
+                    typingTimer = setTimeout(showNext, speed);
+                } else {
+                    typingRunning = false;
+                    typingDone = true;
+                }
+            }
+            showNext();
+        }
+    </script>
+
+    <script>
+        const lixiImages = [
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/lixi1.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/lixi2.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/lixi3.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/lixi4.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/lixi5.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/lixi6.png"
+        ];
+
+        const photoImages = [
+            "https://raw.githubusercontent.com/tzydangyeu-cmd/tetchomoinguoi/main/photo/1.png",
+            "https://raw.githubusercontent.com/tzydangyeu-cmd/tetchomoinguoi/main/photo/2.png",
+            "https://raw.githubusercontent.com/tzydangyeu-cmd/tetchomoinguoi/main/photo/3.png",
+            "https://raw.githubusercontent.com/tzydangyeu-cmd/tetchomoinguoi/main/photo/4.png",
+            "https://raw.githubusercontent.com/tzydangyeu-cmd/tetchomoinguoi/main/photo/5.png",
+        ];
+
+        const photoCaptions = [
+            "Bữa cơm sum vầy – nơi mọi yêu thương quay về. Dù đi xa đến đâu, Tết vẫn là lúc cả nhà cùng ngồi lại bên nhau.",
+            "Tết Việt là tiếng cười rộn ràng, là những khoảnh khắc giản dị nhưng ấm áp. Chỉ cần có gia đình, mọi điều nhỏ bé cũng trở nên quý giá.",
+            "Chỉ cần có nhau, Tết đã đủ đầy. Không cần mâm cao cỗ đầy, chỉ cần trái tim cùng chung một nhịp.",
+            "Giữa mâm cơm ấm nóng, là cả một trời thương yêu. Tết không chỉ là ngày lễ, mà là ngày để trở về.",
+            "Lì xì trao tay – lộc đến đầy nhà. Mỗi phong bao đỏ là một lời chúc bình an cho năm mới."
+        ];
+
+        const moneyWeights = [
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/1k.png", weight: 30 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/2k.png", weight: 20 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/5k.png", weight: 20 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/10k.png", weight: 10 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/20k.png", weight: 8 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/50k.png", weight: 6 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/100k.png", weight: 5 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/200k.png", weight: 3 },
+            { url: "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/500k.png", weight: 2 }
+        ];
+
+        const gioihan = [
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/bip1.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/bip2.png",
+            "https://raw.githubusercontent.com/ngotranhoangthinhhtk8c-cmd/Dip_tet_nguyen_dan/main/Anh_he_thong/bip3.png"
+        ];
+
+        let randomCount = 0;
+
+        function randomMoney() {
+            randomCount++;
+
+            if (randomCount <= 3) {
+                const totalWeight = moneyWeights.reduce(
+                    (sum, item) => sum + item.weight,
+                    0
+                );
+
+                let randomNum = Math.random() * totalWeight;
+
+                for (const item of moneyWeights) {
+                    if (randomNum < item.weight) {
+                        return item.url;
+                    }
+                    randomNum -= item.weight;
+                }
+
+                return moneyWeights[0].url;
+            }
+
+            const index = Math.floor(Math.random() * gioihan.length);
+            return gioihan[index];
+        }
+        const tetEmojis = [
+            "🌸",
+            "🌼",
+            "💮",
+            "🪷",
+            "🌹",
+            "🎊",
+            "🎉",
+            "✨",
+            "💖"
+        ];
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function createFallingEmoji() {
+            const wrapper = document.createElement("div");
+            wrapper.className = "fall-emoji";
+            const inner = document.createElement("div");
+            inner.className = "emoji-spin";
+            inner.textContent = tetEmojis[Math.floor(Math.random() * tetEmojis.length)];
+            wrapper.style.left = Math.random() * 100 + "vw";
+            const duration = Math.random() * 10 + 12;
+            wrapper.style.animationDuration = `${duration}s, 4s`;
+            inner.style.animationDuration = `${Math.random() * 6 + 6}s`;
+            wrapper.appendChild(inner);
+            document.body.appendChild(wrapper);
+            setTimeout(() => wrapper.remove(), duration * 1000);
+        }
+
+        function createFallingLixi(imgUrl) {
+            const wrapper = document.createElement("div");
+            wrapper.className = "fall-lixi";
+            const inner = document.createElement("div");
+            inner.className = "lixi-spin";
+            inner.style.backgroundImage = `url(${imgUrl})`;
+            inner.style.cursor = "pointer";
+            const tempImg = new Image();
+            tempImg.src = imgUrl;
+            tempImg.onload = () => {
+                const ratio = tempImg.width / tempImg.height;
+                wrapper.style.height = `calc(var(--lixi-size) / ${ratio})`;
+            };
+
+            wrapper.style.left = Math.random() * 100 + "vw";
+            const duration = Math.random() * 10 + 14;
+            wrapper.style.animationDuration = `${duration}s, 4s`;
+            inner.style.animationDuration = `${Math.random() * 6 + 6}s`;
+
+            inner.addEventListener("click", (e) => {
+                e.stopPropagation();
+                wrapper.remove();
+                openLixiPopup(imgUrl);
+            });
+
+            wrapper.appendChild(inner);
+            document.body.appendChild(wrapper);
+
+            setTimeout(() => {
+                if (wrapper.parentNode) wrapper.remove();
+            }, duration * 1000);
+        }
+
+        const photoOverlay = document.getElementById('photo-overlay');
+        let activePhoto = null;
+        let originalData = {};
+        function createFallingItem(type, imgUrl) {
+            const item = document.createElement("div");
+            item.classList.add("fall-item");
+
+            if (type === "photo") {
+                item.classList.add("fall-photo");
+                item.style.pointerEvents = "auto";
+                item.style.backgroundImage = `url(${imgUrl})`;
+                const tempImg = new Image();
+                tempImg.src = imgUrl;
+                tempImg.onload = () => {
+                    const ratio = tempImg.width / tempImg.height;
+                    const widthVal = item.offsetWidth || 100;
+                    item.style.height = (widthVal / ratio) + "px";
+                };
+            }
+
+            item.style.left = Math.random() * 100 + "vw";
+            const duration = random(
+                parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fall-duration-min")),
+                parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--fall-duration-max"))
+            );
+
+            const swayDuration = random(3, 6);
+            item.style.animationDuration = `${duration}s, ${swayDuration}s`;
+
+            const removeTimeout = setTimeout(() => {
+                if (!item.classList.contains('viewing') && item.parentNode) {
+                    item.remove();
+                }
+            }, duration * 1000);
+
+            item.dataset.timeoutId = removeTimeout;
+
+            if (type === "photo") {
+                item.onclick = (e) => {
+                    e.stopPropagation();
+                    if (activePhoto) return;
+                    activePhoto = item;
+                    const rect = item.getBoundingClientRect();
+                    const photoIndex = photoImages.indexOf(imgUrl);
+                    const captionBox = document.getElementById('photo-caption-box');
+                    const captionText = document.getElementById('caption-text');
+
+                    originalData = {
+                        left: item.style.left,
+                        top: rect.top + "px",
+                        width: rect.width + "px",
+                        height: rect.height + "px",
+                        fallDuration: item.style.animationDuration
+                    };
+
+                    item.style.position = "fixed";
+                    item.style.left = rect.left + "px";
+                    item.style.top = rect.top + "px";
+                    item.style.width = rect.width + "px";
+                    item.style.height = rect.height + "px";
+                    item.style.animation = "none";
+                    item.style.zIndex = "100002";
+
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            photoOverlay.classList.add('show');
+                            item.classList.add('viewing');
+                            item.style.left = "30%";
+                            item.style.top = "50%";
+                            item.style.transform = "translate(-50%, -50%) scale(3.5)";
+                            captionBox.classList.remove('fading');
+                            captionBox.classList.add('active');
+                            const textToType = photoCaptions[photoIndex] || "Chúc mừng năm mới!";
+                            const photoHint = document.getElementById('photo-hint');
+                            if (photoHint) photoHint.style.opacity = "0";
+                            typePhotoCaption(captionText, textToType, 45, () => {
+                                if (photoHint) {
+                                    photoHint.style.opacity = "1";
+                                }
+                            });
+                        });
+                    });
+                };
+            }
+
+            document.body.appendChild(item);
+        }
+
+        photoOverlay.onclick = () => {
+            if (!activePhoto) return;
+            const captionBox = document.getElementById('photo-caption-box');
+            const photoHint = document.getElementById('photo-hint');
+            if (photoHint) photoHint.style.opacity = "0";
+            if (captionBox) {
+                captionBox.classList.remove('active');
+                captionBox.classList.add('fading');
+            }
+
+            const item = activePhoto;
+            photoOverlay.classList.remove('show');
+
+            if (item.dataset.timeoutId) {
+                clearTimeout(parseInt(item.dataset.timeoutId));
+            }
+
+            item.style.transition = "all 0.4s ease-in-out";
+            item.style.left = originalData.left;
+            item.style.top = originalData.top;
+            item.style.width = originalData.width;
+            item.style.height = originalData.height;
+            item.style.transform = "translate(0, 0) scale(1)";
+
+            item.addEventListener('transitionend', function handler() {
+                item.removeEventListener('transitionend', handler);
+                item.classList.remove('viewing');
+                item.style.zIndex = "4";
+                const currentY = parseFloat(item.style.top)
+                const windowHeight = window.innerHeight;
+                const remainingDist = windowHeight - currentY + 150;
+                const duration = remainingDist / 35;
+                item.style.transition = `top ${duration}s linear`;
+                item.offsetHeight;
+                item.style.top = (windowHeight + 200) + "px";
+                item.dataset.timeoutId = setTimeout(() => {
+                    if (item.parentNode) item.remove();
+                }, duration * 1000);
+                activePhoto = null;
+            }, { once: true });
+        };
+
+        function createMoneyRain(icons) {
+            const rainCount = 30;
+            for (let i = 0; i < rainCount; i++) {
+                setTimeout(() => {
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "fall-emoji";
+                    wrapper.style.zIndex = "10001";
+                    const inner = document.createElement("div");
+                    inner.className = "emoji-spin";
+                    inner.textContent = icons[Math.floor(Math.random() * icons.length)];
+                    wrapper.style.left = Math.random() * 100 + "vw";
+                    const duration = Math.random() * 4 + 3;
+                    wrapper.style.animationDuration = `${duration}s, 3s`;
+                    inner.style.animationDuration = `${Math.random() * 6 + 6}s`;
+                    wrapper.appendChild(inner);
+                    document.body.appendChild(wrapper);
+                    setTimeout(() => wrapper.remove(), duration * 1000);
+                }, i * 40);
+            }
+        }
+
+        function openLixiPopup(selectedLixiUrl) {
+            let canClose = false;
+            const overlay = document.createElement("div");
+            overlay.style.cssText = `position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:10000; opacity:1; transition: opacity 0.3s ease;`;
+            const flash = document.createElement("div");
+            flash.className = "flash-white";
+            document.body.appendChild(flash);
+            const hint = document.createElement("div");
+            hint.className = "tap-hint";
+            hint.textContent = "* Nhấn vào màn hình để tiếp tục *";
+            document.body.appendChild(hint);
+            const popup = document.createElement("div");
+            popup.style.cssText = `position:relative; display:flex; align-items:center; justify-content:center; width:100%; height:100%;`;
+            const lixiImg = document.createElement("img");
+            lixiImg.src = selectedLixiUrl;
+            lixiImg.style.cssText = `max-height:45vh; z-index: 5; position: relative; transition: all 0.5s ease;`;
+            lixiImg.style.animation = "superVibrate 2s cubic-bezier(.42, 0, 1, 1) forwards";
+            const selectedMoneyUrl = randomMoney();
+            const moneyImg = document.createElement("img");
+            moneyImg.src = selectedMoneyUrl;
+            const moneyData = moneyWeights.find(item => item.url === selectedMoneyUrl) || moneyWeights[0];
+            let rainIcons = ["🧧"];
+            if (moneyData.url.includes("1k.png")) rainIcons = ["💩", "🤣"];
+            else if (moneyData.url.includes("2k.png")) rainIcons = ["💩", "😆"];
+            else if (moneyData.url.includes("5k.png")) rainIcons = ["💩", "😗"];
+            else if (moneyData.url.includes("10k.png")) rainIcons = ["😝"];
+            else if (moneyData.url.includes("20k.png")) rainIcons = ["😊"];
+            else if (moneyData.url.includes("50k.png")) rainIcons = ["🌹"];
+            else if (moneyData.url.includes("100k.png")) rainIcons = ["😍"];
+            else if (moneyData.url.includes("200k.png")) rainIcons = ["😯", "🤩"];
+            else if (moneyData.url.includes("500k.png")) rainIcons = ["🥳", "🎉", "🎊", "🤯", "😱"];
+            moneyImg.style.cssText = `position: absolute; width: 25vw; max-width: 500px; z-index: 50; opacity: 0; pointer-events: none; transform: scale(0.5); transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);`;
+            popup.appendChild(lixiImg);
+            popup.appendChild(moneyImg);
+            overlay.appendChild(popup);
+            document.body.appendChild(overlay);
+
+            setTimeout(() => {
+                flash.classList.add("flash-active");
+
+                setTimeout(() => {
+                    lixiImg.style.animation = "none";
+                    moneyImg.style.opacity = "1";
+                    moneyImg.style.transform = "scale(1)";
+
+                    createMoneyRain(rainIcons);
+                }, 200);
+
+                setTimeout(() => {
+                    hint.style.opacity = "1";
+                    canClose = true;
+                }, 700);
+            }, 2000);
+
+            overlay.onclick = () => {
+                if (!canClose) return;
+                overlay.style.opacity = "0";
+                flash.remove();
+                hint.remove();
+                setTimeout(() => overlay.remove(), 300);
+            };
+        }
+
+        function typePhotoCaption(element, text, speed = 50, onComplete) {
+            element.innerHTML = "";
+            const segments = text.split(/(\s+)/);
+            let segmentIdx = 0;
+            let charIdx = 0;
+            let currentWordSpan = null;
+
+            function typing() {
+                const parentBox = document.getElementById('photo-caption-box');
+                if (!parentBox || !parentBox.classList.contains('active')) return;
+
+                if (segmentIdx < segments.length) {
+                    const segment = segments[segmentIdx];
+
+                    if (segment.trim() === "") {
+                        if (segment.includes("\n")) {
+                            element.appendChild(document.createElement("br"));
+                        } else {
+                            element.appendChild(document.createTextNode(" "));
+                        }
+                        segmentIdx++;
+                        charIdx = 0;
+                        currentWordSpan = null;
+                        setTimeout(typing, speed);
+                        return;
+                    }
+
+                    if (!currentWordSpan) {
+                        currentWordSpan = document.createElement("span");
+                        currentWordSpan.style.whiteSpace = "nowrap";
+                        currentWordSpan.style.display = "inline-block";
+                        element.appendChild(currentWordSpan);
+                    }
+
+                    const chars = Array.from(segment);
+                    if (charIdx < chars.length) {
+                        const ch = chars[charIdx];
+                        const letter = document.createElement("span");
+                        letter.textContent = ch;
+                        letter.style.display = "inline-block";
+                        letter.style.transform = "translateY(5px)";
+                        letter.style.opacity = "0";
+                        letter.style.transition = "all 0.25s ease";
+                        currentWordSpan.appendChild(letter);
+
+                        requestAnimationFrame(() => {
+                            letter.style.transform = "translateY(0)";
+                            letter.style.opacity = "1";
+                        });
+
+                        charIdx++;
+                        setTimeout(typing, speed);
+                    } else {
+                        segmentIdx++;
+                        charIdx = 0;
+                        currentWordSpan = null;
+                        setTimeout(typing, speed);
+                    }
+                } else {
+                    if (typeof onComplete === "function") {
+                        onComplete();
+                    }
+                }
+            }
+            typing();
+        }
+
+        let fallingStarted = false;
+        let fallingInterval = null;
+
+        function startFallingEffect() {
+            if (fallingStarted) return;
+            fallingStarted = true;
+
+            fallingInterval = setInterval(() => {
+                const roll = Math.random();
+
+                if (roll < 0.3) {
+                    createFallingLixi(
+                        lixiImages[Math.floor(Math.random() * lixiImages.length)]
+                    );
+
+                } else if (roll < 0.6) {
+                    createFallingEmoji();
+                } else {
+                    createFallingItem(
+                        "photo",
+                        photoImages[Math.floor(Math.random() * photoImages.length)]
+                    );
+                }
+            }, 1200);
+        }
+    </script>
+
+</body>
+
+</html>
